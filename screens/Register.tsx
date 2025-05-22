@@ -10,6 +10,7 @@ import {
   ScrollView,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import { API_BASE_URL } from "../src/config/api";
 
 export default function RegisterScreen() {
   const navigation = useNavigation();
@@ -35,7 +36,7 @@ export default function RegisterScreen() {
     }
 
     try {
-      const response = await fetch("http://192.168.0.17:3000/api/usuario", {
+      const response = await fetch(`${API_BASE_URL}/usuario`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

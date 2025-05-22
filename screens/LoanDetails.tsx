@@ -14,6 +14,7 @@ import Icon from "react-native-vector-icons/FontAwesome";
 import LottieView from "lottie-react-native";
 import { AuthService } from "../services/auth";
 import { useEffect } from "react";
+import { API_BASE_URL } from "../src/config/api";
 
 const { height } = Dimensions.get("window");
 
@@ -60,7 +61,7 @@ export default function LoanDetailsScreen() {
         totalToPay: parseFloat(formattedTotal),
       };
 
-      const response = await fetch("http://192.168.0.17:3000/api/simulador", {
+      const response = await fetch(`${API_BASE_URL}/simulador`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

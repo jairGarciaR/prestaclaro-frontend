@@ -16,6 +16,7 @@ import {
 import { AuthService } from "../services/auth";
 import BottomNavbar from "../components/BottomNavbar";
 import { useNavigation } from "@react-navigation/native";
+import { API_BASE_URL } from "../src/config/api";
 
 const { height } = Dimensions.get("window");
 
@@ -32,7 +33,7 @@ export default function HistoryScreen() {
 
     try {
       const res = await fetch(
-        `http://192.168.0.17:3000/api/simulaciones?userId=${userId}`
+        `http://192.168.0.16:3000/api/simulaciones?userId=${userId}`
       );
       const data = await res.json();
       setQuotes(data);
@@ -49,12 +50,9 @@ export default function HistoryScreen() {
 
   const handleDelete = async (id: number) => {
     try {
-      const res = await fetch(
-        `http://192.168.0.17:3000/api/simulaciones/${id}`,
-        {
-          method: "DELETE",
-        }
-      );
+      const res = await fetch(`${API_BASE_URL}/simulaciones/${id}`, {
+        method: "DELETE",
+      });
       if (res.ok) {
         setQuotes((prev) => prev.filter((q) => q.id !== id));
         setModalVisible(false);

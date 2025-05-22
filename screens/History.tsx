@@ -32,9 +32,7 @@ export default function HistoryScreen() {
     if (!userId) return;
 
     try {
-      const res = await fetch(
-        `http://192.168.0.16:3000/api/simulaciones?userId=${userId}`
-      );
+      const res = await fetch(`${API_BASE_URL}/simulaciones?userId=${userId}`);
       const data = await res.json();
       setQuotes(data);
     } catch (error) {
